@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>First Map</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="">
+  <link rel="stylesheet" href="styles/first_map.css">
+
+</head>
+
+<body>
+  <h1>My Favorite Coffee Shops</h1>
+
+  <p>The best coffee shops in Gainesville, and what makes them special</p>
+
+  <div id="map"></div>
+
+  <p>By Carolina Ilvento</p>
+
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+<script>
+  var map = L.map('map').setView([29.656338, -82.333454], 12.80);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/carolilvento/cle5x14pl001a01pb1rzh9ay6/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2Fyb2xpbHZlbnRvIiwiYSI6ImNsZTV3dmtvcDAwOHUzcWxlOHNhZThybDIifQ.JpySVKFAYhvuRRULnwC1hQ', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+}).addTo(map);
+
+  let marker1 = L.marker([29.67164845832629, -82.33059591646952]).addTo(map);
+  let marker2 = L.marker([29.652090935272163, -82.33113557400972]).addTo(map);
+  let marker3 = L.marker([29.65067370062541, -82.3334315448334]).addTo(map);
+  let marker4 = L.marker([29.64963223447205, -82.32364509390054]).addTo(map);
+
+  marker1.bindPopup("<b>Curia on the Drag</b><br>Open space, vintage store and food truck")
+  marker2.bindPopup("<b>Karma Cream</b><br>Vegan food options")
+  marker3.bindPopup("<b>Opus Coffee</b><br>Best coffee in town:)")
+  marker4.bindPopup("<b>Maudes Coffee</b><br>Nice ambiance and music")
+
+
+</script>
+
+</body>
+</html>

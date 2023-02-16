@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PFAS in Drinking Water</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="">
+  <link rel="stylesheet" href="styles/first_map.css">
+
+</head>
+
+<body>
+  <h1>PFAS Contamination in Florida Drinking Water</h1>
+
+  <p>An approximate location of all the Florida drinking water systems that have tested above maximum levels of PFAS.</p>
+
+  <div id="map"></div>
+
+  <p>By Carolina Ilvento</p>
+
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+<script src="js/places.js"></script>
+
+<script>
+  var map = L.map('map').setView([28.256686, -83.716843], 6.33);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/carolilvento/cle6mqs99009k01qgr8y5ugwv/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY2Fyb2xpbHZlbnRvIiwiYSI6ImNsZTV3dmtvcDAwOHUzcWxlOHNhZThybDIifQ.JpySVKFAYhvuRRULnwC1hQ', {
+    maxZoom: 18,
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
+}).addTo(map);
+
+  for ( let i = 0; i < places.length; i++ ) {
+    L.marker( [ places[i].Latitude, places[i].Longitude ] )
+    .bindPopup('<h3>' + places[i].SystemName + '</h3>' + '<p>' + 'Serves ' + places[i].PopServed + ' people' + '</p>')
+    .addTo(map)
+  }
+
+</script>
+
+</body>
+</html>

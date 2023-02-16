@@ -1,0 +1,31 @@
+#map {
+  height: 400px;
+  width: 100%;
+  max-width: 700px;
+  border:1px solid #253DA1;
+}
+
+body {
+  font-family: 'Alegreya Sans', sans-serif;
+  color: #000;
+  max-width: 600px;
+  margin: auto;
+  background-color: #b0dbf1;
+}
+
+h1 {
+  text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    margin: 1rem;
+  }
+
+  #map {
+    width: 80%;
+    height: 500px;
+    align-content: center;
+    margin: 1rem;
+  }
+}
