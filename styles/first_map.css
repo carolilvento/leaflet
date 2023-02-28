@@ -6,11 +6,13 @@
 }
 
 body {
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.2rem;
   color: #000;
   max-width: 600px;
   margin: auto;
-  background-color: #b0dbf1;
+  background-color: #f9f6f3;
+  line-height: 1.5;
 }
 
 h1 {
