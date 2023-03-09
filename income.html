@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PFAS in Drinking Water</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="">
+  <link rel="stylesheet" href="styles/first_map.css">
+
+</head>
+
+<body>
+  <h1>Median Income by Census Tract</h1>
+
+  <p> Median Family Income in the Past 12 Months, adjusted to 2021 inflation. <br> The Florida median income is $63,062.</p>
+
+  <div id="map"></div>
+
+  <p>By Carolina Ilvento</p>
+
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+<script src="js/income.js"></script>
+
+<script>
+var map = L.map('map').setView([28.256686, -83.716843], 6.33);
+
+var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+L.geoJson(income, {
+  filter: function(feature) {
+    return feature.properties.name !== "Florida";
+  },
+  style: function(feature) {
+    return { fillColor: getColor(feature.properties.B19113001) };
+  }
+}).addTo(map);
+
+function getColor(d) {
+    return d > 90000 ? '#ffffcc' :
+           d > 75000   ? '#a1dab4' :
+           d > 50000   ? '#41b6c4' :
+           d > 25000   ? '#fe9929' :
+                      '#ffff';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.B19113001),
+        weight: .5,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+L.geoJson(income, {style: style}).addTo(map);
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    layer.bringToFront()
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    geojson.resetStyle(e.target)
+    info.update();
+}
+
+var geojson;
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+geojson = L.geoJson(income, {
+    style: style,
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+};
+
+
+info.update = function (props) {
+  this._div.innerHTML = '<h4>Median Income</h4>' +  (props ?
+          '<b>' + props.name.split(',')[1].trim() + '</b><br />' + '$' + props.B19113001.toLocaleString()
+          : 'Hover over an area');
+};
+
+info.addTo(map);
+
+
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [25000, 50000, 75000, 90000],
+        labels = [];
+
+    for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' + '$' +
+                grades[i].toLocaleString() + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        }
+
+        return div;
+    };
+
+    legend.addTo(map);
+
+
+</script>
+
+</body>
+</html>
