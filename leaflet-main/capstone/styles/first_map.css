@@ -1,0 +1,141 @@
+#map {
+  height: 400px;
+  width: 100%;
+  max-width: 700px;
+  border: none;
+  margin: 0 auto;
+}
+
+#map2 {
+  height: 400px;
+  width: 100%;
+  max-width: 700px;
+  border: none;
+}
+
+body {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.2rem;
+  color: #000;
+  max-width: 600px;
+  margin: auto;
+  background-color: #f9f6f3;
+  line-height: 1.5;
+}
+
+h1 {
+  text-align: center;
+}
+
+#info {
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+
+.legend {
+    line-height: 18px;
+    color: #555;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.location-message {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1.2rem;
+  color: #000;
+  max-width: 600px;
+  margin: auto;
+  background-color: #f9f6f3;
+  line-height: 1.5;
+}
+
+  #map {
+    width: 80%;
+    height: 500px;
+    align-content: center;
+    margin: 1rem;
+  }
+}
+
+header nav {
+  background-color: #f2f2f2; /* set a neutral background color */
+  height: 50px; /* set a fixed height for the navigation bar */
+}
+
+header ul {
+  display: flex; /* use flexbox to make the list horizontal */
+  justify-content: space-evenly; /* evenly space the list items */
+  list-style: none; /* remove the default list styling */
+  margin: 0; /* remove any default margin */
+  padding: 0; /* remove any default padding */
+}
+
+header li {
+  margin: 0; /* remove any default margin */
+}
+
+header a {
+  color: #333; /* set a neutral color for the links */
+  display: block; /* make the links fill the entire list item */
+  padding: 16px; /* add some padding to the links */
+  text-decoration: none; /* remove the default underline styling */
+}
+
+header a:hover {
+  background-color: #ddd; /* add a hover background color */
+}
+
+#locator-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#locator-input {
+  padding: 10px;
+  border: none;
+  outline: none;
+}
+
+button[type="submit"] {
+  background-color: #f5f5f5;
+  color: #333;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    margin: 1rem;
+  }

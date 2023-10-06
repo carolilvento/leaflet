@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PFAS in Drinking Water</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin="">
+  <link rel="stylesheet" href="styles/first_map.css">
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Contaminated Facilities </a></li>
+        <li><a href="income.html">Income Data</a></li>
+        <li><a href="area.html">Affected Areas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Areas Serviced By Contaminated Water Wells</h1>
+
+  <p> text about affected areas hello</p>
+
+  <div id="searchDiv">
+    <input type="text" id="searchInput" placeholder="Enter a location">
+    <button onclick="searchLocation()">Search</button>
+  </div>
+
+  <h2> Miami Dade </h2>
+
+  <div id="map"></div>
+
+  <p>By Carolina Ilvento</p>
+
+  <h2> Pensacola </h2>
+
+  <div id="map2"></div>
+
+  <p> By Carolina Ilvento </p>
+
+  <h2> Ocala </h2>
+
+  <div id="map3"></div>
+
+  <p> By Carolina Ilvento </p>
+
+  <!-- Search Input -->
+
+  <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+  <script src="js/miami_areas.js"></script>
+  <script>
+    var map = L.map('map').setView([25.674547, -80.166036], 9.4);
+
+    var tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 20,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // Load the GeoJSON data from the external file
+    var geojsonLayer;
+    fetch('js/miami_areas.js') // Change to the correct path of your GeoJSON file
+      .then(response => response.json())
+      .then(data => {
+        // Create a Leaflet GeoJSON layer and add it to the map
+        geojsonLayer = L.geoJSON(data).addTo(map);
+      })
+      .catch(error => console.error('Error loading GeoJSON:', error));
+
+    // Function to search the input location
+    function searchLocation() {
+      // Rest of the searchLocation() function code
+      // ...
+    }
+  </script>
+
+  <script>
+    var map2 = L.map('map2').setView([30.150010, -86.351065], 7.22);
+
+    var tiles2 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map2);
+  </script>
+
+  <script>
+    var map3 = L.map('map3').setView([30.150010, -86.351065], 7.22);
+
+    var tiles3 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 20,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map3);
+  </script>
+
+</body>
+</html>
